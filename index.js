@@ -374,12 +374,19 @@ fastify.register(async (fastify) => {
 // New route to handle phone call requests
 fastify.post("/make-call", async (request, reply) => {
   const { phoneNumber } = request.body;
+  const twimlResponse = `<?xml version="1.0" encoding="UTF-8"?>
+                          <Response>
+                              <Connect>
+                                  <Stream url="wss://${request.headers.host}/media-stream" />
+                              </Connect>
+                          </Response>`;
 
   try {
     const call = await twilioClient.calls.create({
-      url: `http://localhost:3000/incoming-call`,
+      // url: `http://localhost:3000/incoming-call`,
       to: phoneNumber,
       from: TWILIO_PHONE_NUMBER,
+      twiml: twimlResponse,
     });
 
     reply.send({ success: true, callSid: call.sid });
