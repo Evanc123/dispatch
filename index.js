@@ -377,7 +377,7 @@ fastify.post("/make-call", async (request, reply) => {
 
   try {
     const call = await twilioClient.calls.create({
-      url: `https://f474-70-23-180-244.ngrok-free.app/incoming-call`,
+      url: `http://localhost:3000/incoming-call`,
       to: phoneNumber,
       from: TWILIO_PHONE_NUMBER,
     });
