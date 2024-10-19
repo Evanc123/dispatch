@@ -382,12 +382,15 @@ fastify.post("/make-call", async (request, reply) => {
                           </Response>`;
 
   try {
+    console.log("RECEIED CALL");
     const call = await twilioClient.calls.create({
       // url: `http://localhost:3000/incoming-call`,
       to: phoneNumber,
       from: TWILIO_PHONE_NUMBER,
       twiml: twimlResponse,
     });
+
+    console.log("created call", call);
 
     reply.send({ success: true, callSid: call.sid });
   } catch (error) {

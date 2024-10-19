@@ -36,17 +36,33 @@
         button:hover {
             background-color: #45a049;
         }
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .button-group button {
+            flex: 1;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Make a Call</h1>
         <input type="tel" id="phoneNumber" placeholder="Enter phone number">
-        <button onclick="makeCall()">Call Now</button>
+        <div class="button-group">
+            <button onclick="callEvan()">Call Evan</button>
+            <button onclick="makeCall()">Call Now</button>
+        </div>
         <div id="result"></div>
     </div>
 
     <script>
+        function callEvan() {
+            document.getElementById('phoneNumber').value = '9179124199';
+            makeCall();
+        }
+
         async function makeCall() {
             const phoneNumber = document.getElementById('phoneNumber').value;
             const resultDiv = document.getElementById('result');
