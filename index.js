@@ -64,7 +64,7 @@ Make sure to weave specific pieces of biographical info about the recruit into y
 // const SYSTEM_MESSAGE =
 //   "You work for Encore AI, a platform which provides 360 reviews for clients. Speak fast and be concise.";
 const VOICE = "echo";
-const PORT = process.env.PORT || 5050; // Allow dynamic port assignment
+const PORT = process.env.PORT || 3000; // Allow dynamic port assignment
 
 // List of Event Types to log to the console. See OpenAI Realtime API Documentation. (session.updated is handled separately.)
 const LOG_EVENT_TYPES = [
