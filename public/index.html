@@ -3,38 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Make a Call</title>
+    <title>Jungle Comms</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Courier New', Courier, monospace;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-image: url('/images/jungle-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         .container {
-            background-color: white;
+            background-color: rgba(0, 50, 0, 0.8);
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            color: #adff2f;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         input, button {
             display: block;
             width: 100%;
             margin-bottom: 1rem;
-            padding: 0.5rem;
+            padding: 0.75rem;
             font-size: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 2px solid #adff2f;
+            color: #adff2f;
+            font-family: inherit;
+        }
+        input::placeholder {
+            color: #7cfc00;
         }
         button {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #006400;
+            color: #adff2f;
             border: none;
             cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #008000;
         }
         .button-group {
             display: flex;
@@ -44,15 +67,21 @@
         .button-group button {
             flex: 1;
         }
+        #result {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Make a Call</h1>
-        <input type="tel" id="phoneNumber" placeholder="Enter phone number">
+        <h1>Jungle Comms</h1>
+        <input type="tel" id="phoneNumber" placeholder="Enter comm frequency">
         <div class="button-group">
-            <button onclick="callEvan()">Call Evan</button>
-            <button onclick="makeCall()">Call Now</button>
+            <button onclick="callEvan()">Contact HQ</button>
+            <button onclick="makeCall()">Initiate Comms</button>
         </div>
         <div id="result"></div>
     </div>
@@ -79,12 +108,12 @@
                 const data = await response.json();
 
                 if (data.success) {
-                    resultDiv.textContent = `Call initiated successfully! Call SID: ${data.callSid}`;
+                    resultDiv.textContent = `Comms established! Transmission ID: ${data.callSid}`;
                 } else {
-                    resultDiv.textContent = `Error: ${data.error}`;
+                    resultDiv.textContent = `Transmission failed: ${data.error}`;
                 }
             } catch (error) {
-                resultDiv.textContent = `Error: ${error.message}`;
+                resultDiv.textContent = `Comms error: ${error.message}`;
             }
         }
     </script>
