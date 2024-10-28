@@ -220,6 +220,22 @@ fastify.register(async (fastify) => {
           instructions: SYSTEM_MESSAGE,
           modalities: ["text", "audio"],
           temperature: 0.8,
+          // tools: [
+          //   {
+          //     type: "function",
+          //     name: "log_user_task",
+          //     description:
+          //       "Log a user task. Call this whenever a user, for example, they tell you they finished fixing the bug related to website crashes.",
+          //     parameters: {
+          //       type: "object",
+          //       properties: {
+          //         task: { type: "string" },
+          //       },
+          //       required: ["task"],
+          //     },
+          //   },
+          // ],
+          // tool_choice: "auto",
         },
       };
 
@@ -384,10 +400,10 @@ fastify.post("/make-call", async (request, reply) => {
   try {
     console.log("RECEIED CALL");
     const call = await twilioClient.calls.create({
-      // url: `http://localhost:3000/incoming-call`,
+      url: `https://6c9e-70-23-180-244.ngrok-free.app/incoming-call`,
       to: phoneNumber,
       from: TWILIO_PHONE_NUMBER,
-      twiml: twimlResponse,
+      // twiml: twimlResponse,
     });
 
     console.log("created call", call);
